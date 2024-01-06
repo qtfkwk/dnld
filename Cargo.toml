@@ -1,6 +1,6 @@
 [package]
 name = "dnld"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Rust library for simple downloading"
 repository = "https://github.com/qtfkwk/dnld"
