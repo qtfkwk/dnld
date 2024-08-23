@@ -1,3 +1,4 @@
+#[doc = include_str!("../README.md")]
 use anyhow::Result;
 use bytes::Buf;
 use reqwest::Url;
