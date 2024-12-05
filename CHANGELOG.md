@@ -6,4 +6,5 @@
     * 0.1.3 (2024-07-26): Fix makefile; update dependencies
     * 0.1.4 (2024-08-23): Add usage example to readme; fix readme; add `commit` target to makefile; update dependencies
     * 0.1.5 (2024-10-25): Update dependencies
+    * 0.1.6 (2024-12-04): Update dependencies
 
