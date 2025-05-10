@@ -1,4 +1,5 @@
-#[doc = include_str!("../README.md")]
+#![doc = include_str!("../README.md")]
+
 use anyhow::Result;
 use bytes::Buf;
 use reqwest::Url;
@@ -67,7 +68,7 @@ mod test {
     #[test]
     fn test_url_filename() {
         println!();
-        for (i, (url, filename)) in [
+        for (url, filename) in [
             ("http://some.host.tld/path/to/file.ext", "file.ext"),
             ("http://some.host.tld/path/to/", "to"),
             ("http://some.host.tld/path/to", "to"),
@@ -75,11 +76,8 @@ mod test {
             ("http://some.host.tld/path", "path"),
             ("http://some.host.tld/", "some.host.tld.html"),
             ("http://some.host.tld", "some.host.tld.html"),
-        ]
-        .iter()
-        .enumerate()
-        {
-            println!("{}. {url:?} => {filename:?}", i + 1);
+        ] {
+            println!("* {url:?} => {filename:?}");
             assert_eq!(url_filename(&Url::parse(url).unwrap()), *filename);
         }
     }
@@ -90,8 +88,25 @@ Get the filename from a [`Url`]
 
 * Last non-empty path segment
 * If there are none, return the host with `.html` appended
+
+```rust
+use dnld::*;
+use reqwest::Url;
+
+for (url, filename) in [
+    ("http://some.host.tld/path/to/file.ext", "file.ext"),
+    ("http://some.host.tld/path/to/", "to"),
+    ("http://some.host.tld/path/to", "to"),
+    ("http://some.host.tld/path/", "path"),
+    ("http://some.host.tld/path", "path"),
+    ("http://some.host.tld/", "some.host.tld.html"),
+    ("http://some.host.tld", "some.host.tld.html"),
+] {
+    assert_eq!(url_filename(&Url::parse(url).unwrap()), *filename);
+}
+```
 */
-fn url_filename(url: &Url) -> String {
+pub fn url_filename(url: &Url) -> String {
     url.path_segments()
         .and_then(|x| {
             for s in x.rev() {
