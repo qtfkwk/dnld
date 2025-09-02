@@ -1,12 +1,12 @@
 [package]
 name = "dnld"
-version = "0.2.0"
-edition = "2021"
+version = "0.3.0"
+edition = "2024"
 description = "Rust library for simple downloading"
 repository = "https://github.com/qtfkwk/dnld"
 license = "MIT"
 
 [dependencies]
-anyhow = "1.0.98"
+anyhow = "1.0.99"
 bytes = "1.10.1"
-reqwest = { version = "0.12.15", features = ["blocking"] }
+reqwest = { version = "0.12.23", features = ["blocking"] }
