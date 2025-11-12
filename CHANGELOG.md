@@ -12,4 +12,5 @@
 * 0.2.0 (2025-05-10): Expose `url_filename` function; fix doc; update dependencies
 * 0.3.0 (2025-09-02): Update dependencies; 2024 edition
     * 0.3.1 (2025-10-27): Update dependencies
+    * 0.3.2 (2025-11-12): Update dependencies
 
