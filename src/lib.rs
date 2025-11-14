@@ -1,11 +1,13 @@
 #![doc = include_str!("../README.md")]
 
-use anyhow::Result;
-use bytes::Buf;
-use reqwest::Url;
-use std::{
-    fs::File,
-    path::{Path, PathBuf},
+use {
+    anyhow::Result,
+    bytes::Buf,
+    reqwest::Url,
+    std::{
+        fs::File,
+        path::{Path, PathBuf},
+    },
 };
 
 //--------------------------------------------------------------------------------------------------
@@ -20,6 +22,10 @@ pub struct Client {
 impl Client {
     /**
     Create a new [`Client`] with the given user agent
+
+    # Errors
+
+    Returns an error if not able to create the inner [`reqwest::blocking::Client`]
     */
     pub fn new(user_agent: &str) -> Result<Client> {
         Ok(Client {
@@ -31,6 +37,10 @@ impl Client {
 
     /**
     Download a URL and return the contents in a string
+
+    # Errors
+
+    Returns an error if not able to get the given URL and convert it to a string
     */
     pub fn to_string(&self, url: &str) -> Result<String> {
         Ok(self.client.get(url).send()?.text()?)
@@ -38,6 +48,10 @@ impl Client {
 
     /**
     Download a URL to a file in the current or optional destination directory
+
+    # Errors
+
+    Returns an error if not able to get the given URL and save to the given file
     */
     pub fn to_file(&self, url: &str, dst: Option<&Path>) -> Result<PathBuf> {
         let res = self.client.get(url).send()?;
@@ -105,7 +119,12 @@ for (url, filename) in [
     assert_eq!(url_filename(&Url::parse(url).unwrap()), *filename);
 }
 ```
+
+# Panics
+
+Panics if not able to get the filename or the host from the url
 */
+#[must_use]
 pub fn url_filename(url: &Url) -> String {
     url.path_segments()
         .and_then(|x| {

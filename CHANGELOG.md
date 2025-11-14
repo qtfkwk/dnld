@@ -13,4 +13,5 @@
 * 0.3.0 (2025-09-02): Update dependencies; 2024 edition
     * 0.3.1 (2025-10-27): Update dependencies
     * 0.3.2 (2025-11-12): Update dependencies
+    * 0.3.3 (2025-11-14): Update dependencies; add `clippy::pedantic` to `cargo clippy` command in the `clippy` target in the makefile; clippy fixes
 
